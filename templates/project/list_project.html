@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container pt-5">
+    <h1>Projects</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.name }}</td>
+                <td>{{ project.description }}</td>
+                <td>{{ project.start_date }}</td>
+                <td>{{ project.end_date }}</td>
+                <td>
+                    <a href="{% url 'project_detail' pk=project.id %}" class="btn btn-primary">View</a>
+{#                    <a href="{% url 'project_edit' pk=project.id %}" class="btn btn-secondary">Edit</a>#}
+{#                    <a href="{% url 'project_delete' pk=project.id %}" class="btn btn-danger">Delete</a>#}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'create_project' %}" class="btn btn-success">Create Project</a>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+{% block content %}
+
+    <div class="container pt-2 pb-5">
+        <h1 class="title">Tasks</h1>
+        <a href="{% url 'create_task' %}" class="btn btn-success">Create Task</a>
+
+        <div class="row pt-5">
+            {% for task in tasks %}
+                <div class="mt-3 col-sm-6 mb-3 mb-sm-0">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>{{ task.name }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{ task.description }}</p>
+                            <p>Project: {{ task.project.name }}</p>
+                            <p>Assigned to: {{ task.responsible }}</p>
+                            <p>Status: {{ task.status }}</p>
+                            <p>Priority: {{ task.priority }}</p>
+                        </div>
+
+                        <div class="card-footer text-body-secondary d-flex justify-content-between">
+                            <small class="text-muted">Created at: {{ task.created_at }}</small>
+                            <small class="text-muted">Updated at: {{ task.updated_at }}</small>
+                        </div>
+
+                        <div class="card-footer text-body-secondary d-flex justify-content-between">
+                            <a class="btn btn-primary">View</a>
+                            <a class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

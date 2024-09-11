@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block extrahead %}
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        .form-signin {
+            max-width: 330px;
+            padding: 1rem;
+        }
+
+        .form-signin .form-floating:focus-within {
+            z-index: 2;
+        }
+
+        .form-signin input[type="email"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+    </style>
+{% endblock %}
+{% block body %}
+    <main class="d-flex align-items-center py-4 bg-body-tertiary h-100">
+        <div class="form-signin w-100 m-auto">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <img class="mb-4"
+                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                     alt="" width="72" height="57">
+                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+                {% for field in form %}
+
+                    <div class="form-floating">
+                        <input type="{{ field.field.widget.input_type }}"
+                               class="form-control {% if field.errors %}is-invalid{% endif %}"
+                               id="{{ field.id_for_label }}" aria-describedby="{{ field.id_for_label }}_validation"
+                               placeholder="name@example.com" name="{{ field.html_name }}">
+                        <label for="floatingInput">{{ field.label }}</label>
+                        {% for error in field.errors %}
+                            <div id="{{ field.id_for_label }}_validation" class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                <div class="form-check text-start my-3">
+                    <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Remember me
+                    </label>
+                </div>
+                <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}

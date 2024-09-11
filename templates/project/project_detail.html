@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container pt-5">
+    <h1>Project Detail</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ project.name }}</td>
+                <td>{{ project.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{% url 'task_list' project_id=project.id %}" class="btn btn-primary">View Tasks</a>
+</div>
+{% endblock %}

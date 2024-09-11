@@ -1,0 +1,36 @@
+version: '3.3'
+
+services:
+  task-manager-web:
+    container_name: task-manager-web
+    build: .
+    command: python manage.py runserver 0.0.0.0:8001
+    ports:
+      - "8001:8001"
+    environment:
+        - DEBUG=1
+        - POSTGRES_USER=web
+        - POSTGRES_PASSWORD=web123
+        - POSTGRES_DB=web
+        - POSTGRES_HOST=task-manager-db
+        - POSTGRES_PORT=5432
+    volumes:
+      - .:/home/web/app
+    depends_on:
+      - task-manager-db
+
+
+  task-manager-db:
+    container_name: task-manager-db
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=web
+      - POSTGRES_PASSWORD=web123
+      - POSTGRES_DB=web
+    ports:
+      - "5434:5432"
+
+volumes:
+  postgres_data:
