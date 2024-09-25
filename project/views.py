@@ -5,7 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import TemplateView, CreateView, DetailView
 from django.views.generic.list import ListView
 
-from forms import ProjectForm, TaskForm
+from .forms import ProjectForm, TaskForm
 from project.models import Project, Task
 
 
