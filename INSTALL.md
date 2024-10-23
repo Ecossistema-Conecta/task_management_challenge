@@ -20,6 +20,12 @@ Para fazer o deploy desse projeto rode
 
 ## Uso/Exemplos
 
+Rode as migrations
+
+```bash
+docker compose exec task-manager-web python manage.py migrate
+```
+
 Crie um usuario superuser para o primeiro login no sistema
 
 ```bash
